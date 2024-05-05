@@ -12,7 +12,7 @@ func _ready():
 	
 	empty_squares = get_available_squares(viewport_width, viewport_height)
 	
-	var num_blocks = empty_squares.size() / 2
+	var num_blocks = empty_squares.size() / 2.0
 	
 	spawn_blocks(num_blocks)
 	spawn_enemies(5)

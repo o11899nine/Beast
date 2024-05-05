@@ -24,6 +24,8 @@ func can_move(direction):
 			if collider.can_move(direction):
 				collider.move(direction)
 				return true
+			else:
+				return false
 
 func move(direction):
 	position += MOVEMENT[direction] * grid_size
