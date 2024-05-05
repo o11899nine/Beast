@@ -2,7 +2,6 @@ extends CharacterBody2D
 
 var grid_size = Globals.GRID_SIZE
 
-@onready var ray = $RayCast2D
 
 const MOVEMENT = {
 	"move_up": Vector2.UP,
@@ -11,7 +10,8 @@ const MOVEMENT = {
 	"move_right": Vector2.RIGHT,
 }
 
-var may_move = true
+@onready var ray = $RayCast2D
+@onready var may_move = true
 
 func _physics_process(delta):
 	if may_move:
