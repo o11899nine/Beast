@@ -11,12 +11,19 @@ const MOVEMENT = {
 	"move_right": Vector2.RIGHT,
 }
 
+
 func can_move(direction):
 	var vector_pos = MOVEMENT[direction] * grid_size
 	ray.set_target_position(vector_pos)
 	ray.force_raycast_update()
 	if not ray.is_colliding():
 		return true
+	else:
+		var collider = ray.get_collider()
+		if collider.has_method("can_move"):
+			if collider.can_move(direction):
+				collider.move(direction)
+				return true
 
 func move(direction):
 	position += MOVEMENT[direction] * grid_size
