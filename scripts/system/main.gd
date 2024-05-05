@@ -15,8 +15,8 @@ func _ready():
 	var num_blocks = empty_squares.size() / 2.0
 	
 	spawn_blocks(num_blocks)
-	spawn_enemies(5)
 	spawn_player()
+	spawn_enemies(5)
 	
 	
 	

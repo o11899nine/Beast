@@ -13,6 +13,7 @@ const MOVEMENT = {
 
 
 func _process(delta):
+	
 	var can_move = false
 	var possible_moves = MOVEMENT.keys()
 	var direction = null
@@ -29,6 +30,7 @@ func _process(delta):
 		queue_free()
 		
 func _on_move_cooldown_timeout():
+	
 	var can_move = false
 	var possible_moves = MOVEMENT.keys()
 	var direction = null
@@ -38,6 +40,8 @@ func _on_move_cooldown_timeout():
 		direction = possible_moves[0]
 		possible_moves.pop_front()
 		if is_valid_move(direction):
+			#var vector_pos = MOVEMENT[direction] * grid_size
+			#var future_position = position + vector_pos
 			can_move = true
 			break
 	
@@ -56,16 +60,16 @@ func is_valid_move(direction):
 
 func move(direction):
 	
-	var target_position = MOVEMENT[direction] * grid_size
-	ray.set_target_position(target_position)
+	var vector_pos = MOVEMENT[direction] * grid_size
+	ray.set_target_position(vector_pos)
 	ray.force_raycast_update()
 	
 	if not ray.is_colliding():
-		position += target_position
+		position += vector_pos
 	else:
 		var collider = ray.get_collider()
 		if collider.has_method("can_move"):
 			if collider.can_move(direction):
 				collider.move(direction)
-				position += target_position
+				position += vector_pos
 
