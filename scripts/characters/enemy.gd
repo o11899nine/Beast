@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const GRID_SIZE = 16
+var grid_size = Globals.GRID_SIZE
 
 @onready var ray = $RayCast2D
 
@@ -21,7 +21,7 @@ func _on_move_cooldown_timeout():
 func can_move(direction):
 	if not direction:
 		return false
-	var vector_pos = MOVEMENT[direction] * GRID_SIZE
+	var vector_pos = MOVEMENT[direction] * grid_size
 	ray.set_target_position(vector_pos)
 	ray.force_raycast_update()
 	if not ray.is_colliding():
@@ -30,7 +30,7 @@ func can_move(direction):
 
 func move(direction):
 	
-	var target_position = MOVEMENT[direction] * GRID_SIZE
+	var target_position = MOVEMENT[direction] * grid_size
 	ray.set_target_position(target_position)
 	ray.force_raycast_update()
 	
