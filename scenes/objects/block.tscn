@@ -1,16 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://btoe43iqv3xsx"]
+[gd_scene load_steps=4 format=3 uid="uid://bhiufhjj1mtqv"]
 
-[ext_resource type="Script" path="res://Scripts/box.gd" id="1_gn8vg"]
-[ext_resource type="Texture2D" uid="uid://c50o7ug3fdqqb" path="res://Assets/Sprites/crate.png" id="1_j1hl6"]
+[ext_resource type="Texture2D" uid="uid://c50o7ug3fdqqb" path="res://assets/sprites/objects/block.png" id="1_cy038"]
+[ext_resource type="Script" path="res://scripts/objects/block.gd" id="1_lsxcj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fe1dd"]
 size = Vector2(16, 16)
 
-[node name="Box" type="CharacterBody2D" groups=["boxes"]]
-script = ExtResource("1_gn8vg")
+[node name="Block" type="CharacterBody2D"]
+script = ExtResource("1_lsxcj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_j1hl6")
+texture = ExtResource("1_cy038")
 centered = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
