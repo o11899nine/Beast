@@ -17,6 +17,12 @@ func can_move(direction):
 	ray.force_raycast_update()
 	if not ray.is_colliding():
 		return true
+	else:
+		var collider = ray.get_collider()
+		if collider.has_method("can_move"):
+			if collider.can_move(direction):
+				collider.move(direction)
+				return true
 
 func move(direction):
 	position += MOVEMENT[direction] * GRID_SIZE

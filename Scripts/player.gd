@@ -14,7 +14,6 @@ const MOVEMENT = {
 
 func _unhandled_input(event):
 	for direction in MOVEMENT:
-		print(direction)
 		if event.is_action_pressed(direction):
 			move(direction)
 			
