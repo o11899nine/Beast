@@ -10,8 +10,11 @@ const MOVEMENT = {
 	"move_left": Vector2.LEFT,
 	"move_right": Vector2.RIGHT,
 }
-
-
+#
+#func _ready():
+	#var random_rotation = [0,90,180,270].pick_random()
+	#$Sprite2D.rotation = deg_to_rad(random_rotation)
+	
 func is_valid_move(direction):
 	var vector_pos = MOVEMENT[direction] * grid_size
 	ray.set_target_position(vector_pos)

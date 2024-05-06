@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+#TODO: use delta instead of timer? 
+
 var grid_size = Globals.GRID_SIZE
 
 @onready var ray = $RayCast2D
@@ -28,7 +30,6 @@ func _process(delta):
 
 func find_valid_move():
 	
-	var can_move = false
 	var possible_moves = MOVEMENT.keys()
 	var direction = null
 	

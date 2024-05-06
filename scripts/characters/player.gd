@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+#TODO: use delta instead of timer? 
+
 var grid_size = Globals.GRID_SIZE
 
 
