@@ -5,10 +5,14 @@ var grid_size = Globals.GRID_SIZE
 @onready var ray = $RayCast2D
 
 const MOVEMENT = {
-	"move_up": Vector2.UP,
-	"move_down": Vector2.DOWN,
-	"move_left": Vector2.LEFT,
-	"move_right": Vector2.RIGHT,
+	"move_north": Vector2(0,-1),
+	"move_south": Vector2(0,1),
+	"move_west": Vector2(-1,0),
+	"move_east": Vector2(1,0),
+	"move_north_east": Vector2(1,-1),
+	"move_south_east": Vector2(1,1),
+	"move_north_west": Vector2(-1,-1),
+	"move_south_west": Vector2(-1,1),
 }
 
 
@@ -68,8 +72,8 @@ func move(direction):
 		position += vector_pos
 	else:
 		var collider = ray.get_collider()
-		if collider.has_method("can_move"):
-			if collider.can_move(direction):
+		if collider.is_in_group("moveable_objects"):
+			if collider.is_valid_move(direction):
 				collider.move(direction)
 				position += vector_pos
 

@@ -17,26 +17,31 @@ func _physics_process(delta):
 	if may_move:
 		for direction in MOVEMENT:
 			if Input.is_action_pressed(direction):
-				move(direction)
-				may_move = false
-				$MoveCooldown.start()
+				if is_valid_move(direction):
+					move(direction)
+					may_move = false
+					$MoveCooldown.start()
 				
 				
 
-func move(direction):
-	
-	var target_position = MOVEMENT[direction] * grid_size
-	ray.set_target_position(target_position)
+func is_valid_move(direction):
+	var vector_pos = MOVEMENT[direction] * grid_size
+	ray.set_target_position(vector_pos)
 	ray.force_raycast_update()
 	
 	if not ray.is_colliding():
-		position += target_position
+		return true
 	else:
 		var collider = ray.get_collider()
-		if collider.has_method("can_move"):
-			if collider.can_move(direction):
+		if collider.is_in_group("moveable_objects"):
+			if collider.is_valid_move(direction):
 				collider.move(direction)
-				position += target_position
+				return true
+			else:
+				return false
+
+func move(direction):
+	position += MOVEMENT[direction] * grid_size
 
 
 func _on_move_cooldown_timeout():

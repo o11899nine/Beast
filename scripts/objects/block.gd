@@ -12,16 +12,17 @@ const MOVEMENT = {
 }
 
 
-func can_move(direction):
+func is_valid_move(direction):
 	var vector_pos = MOVEMENT[direction] * grid_size
 	ray.set_target_position(vector_pos)
 	ray.force_raycast_update()
+	
 	if not ray.is_colliding():
 		return true
 	else:
 		var collider = ray.get_collider()
-		if collider.has_method("can_move"):
-			if collider.can_move(direction):
+		if collider.is_in_group("moveable_objects"):
+			if collider.is_valid_move(direction):
 				collider.move(direction)
 				return true
 			else:

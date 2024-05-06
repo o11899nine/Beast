@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fe1dd"]
 size = Vector2(16, 16)
 
-[node name="Block" type="CharacterBody2D"]
+[node name="Block" type="CharacterBody2D" groups=["moveable_objects"]]
 script = ExtResource("1_lsxcj")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
