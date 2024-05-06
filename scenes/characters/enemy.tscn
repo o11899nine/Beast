@@ -24,4 +24,5 @@ target_position = Vector2(0, 16)
 [node name="MoveCooldown" type="Timer" parent="."]
 autostart = true
 
+[connection signal="die" from="." to="." method="_on_die"]
 [connection signal="timeout" from="MoveCooldown" to="." method="_on_move_cooldown_timeout"]
