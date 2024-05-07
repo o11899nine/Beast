@@ -16,7 +16,7 @@ func _ready():
 	
 	spawn_blocks(num_blocks)
 	spawn_player()
-	spawn_enemies(5)
+	spawn_mobs(5)
 	
 	
 	
@@ -67,13 +67,13 @@ func spawn_player():
 	player.global_position = player_position
 	add_child(player)
 	
-func spawn_enemies(n):
+func spawn_mobs(n):
 	
 	empty_squares.shuffle()
 	for i in n:
-		var enemy = preload("res://scenes/characters/enemy.tscn").instantiate()
-		var enemy_position = empty_squares[-1]
+		var mob = preload("res://scenes/characters/mob.tscn").instantiate()
+		var mob_position = empty_squares[-1]
 		empty_squares.pop_back()		
-		enemy.global_position = enemy_position
-		add_child(enemy)
+		mob.global_position = mob_position
+		add_child(mob)
 	
