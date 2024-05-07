@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cb5way6i4kfff"]
+
+[ext_resource type="Script" path="res://components/PusherComponent.gd" id="1_x753s"]
+
+[node name="PusherComponent" type="Node"]
+script = ExtResource("1_x753s")
