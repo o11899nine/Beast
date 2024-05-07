@@ -19,3 +19,4 @@ const MOVES_8D = {
 	"move_north_west": Vector2(-1,-1),
 	"move_south_west": Vector2(-1,1),
 }
+

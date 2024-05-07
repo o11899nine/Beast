@@ -1,41 +1,61 @@
 extends CharacterBody2D
 
+const MOVES: Dictionary = Globals.MOVES_4D
+
+@export var can_push: bool = true
+@export var can_be_pushed: bool = false
+
 @onready var ray: RayCast2D = $RayCast2D
-@onready var may_move: bool = true
 @onready var move_cooldown: Timer = $MoveCooldownTimer
 
-func _process(delta):
-	# If move cooldown is over, listen for direction input.
+var may_move: bool = true
+
+
+func _init() -> void:
+	if can_push: add_to_group("pushers")
+	if can_be_pushed: add_to_group("pushables")
+
+
+func _process(delta: float) -> void:
 	if may_move:
-		for direction in Globals.MOVES_4D:
+		for direction in MOVES:
 			if Input.is_action_pressed(direction):
-				# If the adjacent tile in the direction is unoccupied, 
-				# move there and restart move cooldown timer
 				if is_valid_move(direction):
-					move(direction)
+					move_and_push(direction)
 					may_move = false
 					move_cooldown.start()
-				
 
-func is_valid_move(direction: String):
-	var vector_pos: Vector2 = Globals.MOVES_4D[direction] * Globals.GRID_SIZE
-	ray.set_target_position(vector_pos)
+func aim_raycast(direction: String) -> void:
+	var target_position: Vector2 = MOVES[direction] * Globals.GRID_SIZE
+	ray.set_target_position(target_position)
 	ray.force_raycast_update()
-	
+
+
+func is_valid_move(direction: String) -> bool:
+	aim_raycast(direction)
 	if not ray.is_colliding():
 		return true
-	else:
+	elif can_push:
 		var collider: Object = ray.get_collider()
-		if collider.is_in_group("moveable_objects"):
+		if collider.is_in_group("pushables"):
 			if collider.is_valid_move(direction):
-				collider.move(direction)
 				return true
-			else:
-				return false
+	return false
 
-func move(direction):
-	position += Globals.MOVES_4D[direction] * Globals.GRID_SIZE
+func move_and_push(direction: String) -> void:
+	if ray.is_colliding():
+		push(ray.get_collider(), direction)		
+	move(direction)
 
 
-func _on_move_cooldown_timeout():
+func push(object: Object, direction: String) -> void:
+	object.move_and_push(direction)
+
+
+func move(direction: String) -> void:
+	position += MOVES[direction] * Globals.GRID_SIZE
+
+
+
+func _on_move_cooldown_timeout() -> void:
 	may_move = true
