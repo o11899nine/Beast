@@ -1,14 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://b03usvk74ny1g"]
+[gd_scene load_steps=5 format=3 uid="uid://b03usvk74ny1g"]
 
 [ext_resource type="Script" path="res://scripts/characters/mob.gd" id="1_boxj2"]
 [ext_resource type="Texture2D" uid="uid://ck7wgfcssehbv" path="res://assets/sprites/characters/sheep_esther.png" id="2_lbkoq"]
+[ext_resource type="PackedScene" uid="uid://cmxum3eh7t50y" path="res://components/Move4DComponent.tscn" id="3_uha7s"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a4udm"]
 size = Vector2(16, 16)
 
 [node name="Mob" type="CharacterBody2D"]
 script = ExtResource("1_boxj2")
-can_push = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_lbkoq")
@@ -18,12 +18,14 @@ centered = false
 position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_a4udm")
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-position = Vector2(8, 8)
-target_position = Vector2(0, 16)
-
 [node name="MoveCooldownTimer" type="Timer" parent="."]
 one_shot = true
 autostart = true
+
+[node name="Move4DComponent" parent="." instance=ExtResource("3_uha7s")]
+
+[node name="RayCast2D" type="RayCast2D" parent="Move4DComponent"]
+position = Vector2(8, 8)
+target_position = Vector2(0, 16)
 
 [connection signal="timeout" from="MoveCooldownTimer" to="." method="_on_move_cooldown_timeout"]
