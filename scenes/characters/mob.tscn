@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/characters/mob.gd" id="1_boxj2"]
 [ext_resource type="Texture2D" uid="uid://ck7wgfcssehbv" path="res://assets/sprites/characters/sheep_esther.png" id="2_lbkoq"]
-[ext_resource type="PackedScene" uid="uid://cmxum3eh7t50y" path="res://components/Move4DComponent.tscn" id="3_uha7s"]
+[ext_resource type="PackedScene" uid="uid://cmxum3eh7t50y" path="res://components/MoveActions.tscn" id="3_0ak7v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a4udm"]
 size = Vector2(16, 16)
@@ -22,9 +22,9 @@ shape = SubResource("RectangleShape2D_a4udm")
 one_shot = true
 autostart = true
 
-[node name="Move4DComponent" parent="." instance=ExtResource("3_uha7s")]
+[node name="MoveActions" parent="." instance=ExtResource("3_0ak7v")]
 
-[node name="RayCast2D" type="RayCast2D" parent="Move4DComponent"]
+[node name="RayCast2D" type="RayCast2D" parent="MoveActions"]
 position = Vector2(8, 8)
 target_position = Vector2(0, 16)
 

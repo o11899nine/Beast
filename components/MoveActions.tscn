@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cmxum3eh7t50y"]
+
+[ext_resource type="Script" path="res://components/MoveActions.gd" id="1_bs54u"]
+
+[node name="MoveActions" type="Node2D"]
+script = ExtResource("1_bs54u")

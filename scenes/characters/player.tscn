@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://scripts/characters/player.gd" id="1_byuud"]
 [ext_resource type="Texture2D" uid="uid://do8rmupfsruv" path="res://assets/sprites/characters/player.png" id="2_7kgso"]
-[ext_resource type="PackedScene" uid="uid://cmxum3eh7t50y" path="res://components/Move4DComponent.tscn" id="3_5tx4a"]
-[ext_resource type="PackedScene" uid="uid://d1ksggo1i4gjg" path="res://components/PusherComponent.tscn" id="3_27jhr"]
+[ext_resource type="PackedScene" uid="uid://cmxum3eh7t50y" path="res://components/MoveActions.tscn" id="3_6hxx4"]
+[ext_resource type="PackedScene" uid="uid://d1ksggo1i4gjg" path="res://components/PushActions.tscn" id="4_u0iki"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8gnqx"]
 size = Vector2(16, 16)
@@ -24,12 +24,12 @@ wait_time = 0.1
 one_shot = true
 autostart = true
 
-[node name="Move4DComponent" parent="." instance=ExtResource("3_5tx4a")]
+[node name="MoveActions" parent="." instance=ExtResource("3_6hxx4")]
 
-[node name="RayCast2D" type="RayCast2D" parent="Move4DComponent"]
+[node name="RayCast2D" type="RayCast2D" parent="MoveActions"]
 position = Vector2(8, 8)
 target_position = Vector2(0, 16)
 
-[node name="PusherComponent" parent="." instance=ExtResource("3_27jhr")]
+[node name="PushActions" parent="." instance=ExtResource("4_u0iki")]
 
 [connection signal="timeout" from="MoveCooldownTimer" to="." method="_on_move_cooldown_timeout"]

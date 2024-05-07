@@ -2,12 +2,12 @@
 
 [ext_resource type="Script" path="res://scripts/objects/block.gd" id="1_lsxcj"]
 [ext_resource type="Texture2D" uid="uid://f2k2pmaum2v3" path="res://assets/sprites/objects/hay.png" id="2_eu3ro"]
-[ext_resource type="PackedScene" uid="uid://dhwhhi1v4ntdu" path="res://components/PushableComponent.tscn" id="3_p45tk"]
-[ext_resource type="PackedScene" uid="uid://d1ksggo1i4gjg" path="res://components/PusherComponent.tscn" id="4_ycjg8"]
-[ext_resource type="PackedScene" uid="uid://cmxum3eh7t50y" path="res://components/Move4DComponent.tscn" id="5_oivri"]
+[ext_resource type="PackedScene" uid="uid://cmxum3eh7t50y" path="res://components/MoveActions.tscn" id="3_mf40k"]
+[ext_resource type="PackedScene" uid="uid://d1ksggo1i4gjg" path="res://components/PushActions.tscn" id="4_j8pmi"]
+[ext_resource type="PackedScene" uid="uid://dhwhhi1v4ntdu" path="res://components/IsPushable.tscn" id="4_tpod4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fe1dd"]
-size = Vector2(16, 16)
+size = Vector2(14, 14)
 
 [node name="Block" type="StaticBody2D"]
 script = ExtResource("1_lsxcj")
@@ -20,12 +20,12 @@ centered = false
 position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_fe1dd")
 
-[node name="Move4DComponent" parent="." instance=ExtResource("5_oivri")]
+[node name="MoveActions" parent="." instance=ExtResource("3_mf40k")]
 
-[node name="RayCast2D" type="RayCast2D" parent="Move4DComponent"]
+[node name="RayCast2D" type="RayCast2D" parent="MoveActions"]
 position = Vector2(8, 8)
 target_position = Vector2(0, 16)
 
-[node name="PushableComponent" parent="." instance=ExtResource("3_p45tk")]
+[node name="PushActions" parent="." instance=ExtResource("4_j8pmi")]
 
-[node name="PusherComponent" parent="." instance=ExtResource("4_ycjg8")]
+[node name="IsPushable" parent="." instance=ExtResource("4_tpod4")]
