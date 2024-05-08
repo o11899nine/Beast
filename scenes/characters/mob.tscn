@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://scripts/characters/mob.gd" id="1_boxj2"]
 [ext_resource type="Texture2D" uid="uid://ck7wgfcssehbv" path="res://assets/sprites/characters/sheep_esther.png" id="2_lbkoq"]
-[ext_resource type="PackedScene" uid="uid://cmxum3eh7t50y" path="res://components/MoveActions.tscn" id="3_0ak7v"]
+[ext_resource type="Script" path="res://components/move_component.gd" id="4_6oyns"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a4udm"]
 size = Vector2(16, 16)
@@ -18,14 +18,16 @@ centered = false
 position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_a4udm")
 
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(8, 8)
+target_position = Vector2(0, 16)
+
 [node name="MoveCooldownTimer" type="Timer" parent="."]
 one_shot = true
 autostart = true
 
-[node name="MoveActions" parent="." instance=ExtResource("3_0ak7v")]
-
-[node name="RayCast2D" type="RayCast2D" parent="MoveActions"]
-position = Vector2(8, 8)
-target_position = Vector2(0, 16)
+[node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor")]
+script = ExtResource("4_6oyns")
+actor = NodePath("..")
 
 [connection signal="timeout" from="MoveCooldownTimer" to="." method="_on_move_cooldown_timeout"]
