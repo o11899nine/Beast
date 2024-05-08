@@ -2,14 +2,16 @@ class_name MoveInputComponent
 extends Node
 
 @export var move_component: MoveComponent
-@onready var MOVES = Globals.MOVES_4D
+
+const MOVES = Globals.MOVES_4D
+
+var has_moved: bool = false
 
 func _process(delta):
-	if Input.is_action_pressed("move_up"):
-		move_component.move(Vector2.UP)
-	if Input.is_action_pressed("move_down"):
-		move_component.move(Vector2.DOWN)
-	if Input.is_action_pressed("move_left"):
-		move_component.move(Vector2.LEFT)
-	if Input.is_action_pressed("move_right"):
-		move_component.move(Vector2.RIGHT)
+	for direction in MOVES:
+			if Input.is_action_pressed(direction):
+				move_component.move(MOVES[direction])
+				has_moved = true
+	
+	if has_moved:
+		move_component.may_move = false

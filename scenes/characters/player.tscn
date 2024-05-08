@@ -27,7 +27,6 @@ target_position = Vector2(0, 16)
 script = ExtResource("5_pp3af")
 actor = NodePath("..")
 ray = NodePath("../RayCast2D")
-cooldown = 1.0
 
 [node name="MoveInputComponent" type="Node" parent="." node_paths=PackedStringArray("move_component")]
 script = ExtResource("4_6davh")

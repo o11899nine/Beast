@@ -1,16 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://bhiufhjj1mtqv"]
+[gd_scene load_steps=4 format=3 uid="uid://bhiufhjj1mtqv"]
 
 [ext_resource type="Script" path="res://scripts/objects/block.gd" id="1_lsxcj"]
 [ext_resource type="Texture2D" uid="uid://f2k2pmaum2v3" path="res://assets/sprites/objects/hay.png" id="2_eu3ro"]
-[ext_resource type="PackedScene" uid="uid://cmxum3eh7t50y" path="res://components/MoveActions.tscn" id="3_mf40k"]
-[ext_resource type="PackedScene" uid="uid://d1ksggo1i4gjg" path="res://components/PushActions.tscn" id="4_j8pmi"]
-[ext_resource type="PackedScene" uid="uid://dhwhhi1v4ntdu" path="res://components/IsPushable.tscn" id="4_tpod4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fe1dd"]
 size = Vector2(14, 14)
 
 [node name="Block" type="StaticBody2D"]
 script = ExtResource("1_lsxcj")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(8, 8)
+target_position = Vector2(0, 16)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_eu3ro")
@@ -19,13 +20,3 @@ centered = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_fe1dd")
-
-[node name="MoveActions" parent="." instance=ExtResource("3_mf40k")]
-
-[node name="RayCast2D" type="RayCast2D" parent="MoveActions"]
-position = Vector2(8, 8)
-target_position = Vector2(0, 16)
-
-[node name="PushActions" parent="." instance=ExtResource("4_j8pmi")]
-
-[node name="IsPushable" parent="." instance=ExtResource("4_tpod4")]
