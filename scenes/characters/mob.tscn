@@ -30,4 +30,4 @@ ray = NodePath("../RayCast2D")
 script = ExtResource("3_5bfpu")
 actor = NodePath("..")
 move_component = NodePath("../MoveComponent")
-directions = "8D"
+directions = "4D"

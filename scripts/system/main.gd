@@ -12,11 +12,11 @@ func _ready():
 	
 	empty_squares = get_available_squares(viewport_width, viewport_height)
 	
-	var num_blocks = empty_squares.size() / 2.0
+	var num_blocks = empty_squares.size() / 2.5
 	
 	spawn_blocks(num_blocks)
 	spawn_player()
-	spawn_mobs(5)
+	spawn_mobs(7)
 	
 	
 	

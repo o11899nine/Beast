@@ -35,4 +35,4 @@ move_component = NodePath("../MoveComponent")
 script = ExtResource("4_dtsyb")
 actor = NodePath("..")
 move_component = NodePath("../MoveComponent")
-move_delay = 0.2
+move_delay = 0.15

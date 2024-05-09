@@ -33,5 +33,6 @@ script = ExtResource("3_1mrp1")
 actor = NodePath("..")
 ray = NodePath("../RayCast2D")
 
-[node name="PushComponent" type="Node" parent="."]
+[node name="PushComponent" type="Node" parent="." node_paths=PackedStringArray("move_component")]
 script = ExtResource("5_xfxw0")
+move_component = NodePath("../MoveComponent")
