@@ -1,4 +1,4 @@
-class_name MoveInputComponent
+class_name PlayerInputComponent
 extends Node
 
 @export var actor: Node2D

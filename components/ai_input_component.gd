@@ -1,4 +1,4 @@
-class_name MoveAIComponent
+class_name AiInputComponent
 extends Node
 
 @export var actor: Node2D
