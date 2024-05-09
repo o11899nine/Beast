@@ -1,15 +1,14 @@
 [gd_scene load_steps=6 format=3 uid="uid://c06bahnv683x5"]
 
-[ext_resource type="Script" path="res://scripts/characters/player.gd" id="1_byuud"]
 [ext_resource type="Texture2D" uid="uid://do8rmupfsruv" path="res://assets/sprites/characters/player.png" id="2_7kgso"]
 [ext_resource type="Script" path="res://components/move_input_component.gd" id="4_6davh"]
+[ext_resource type="Script" path="res://components/push_component.gd" id="5_ey5lw"]
 [ext_resource type="Script" path="res://components/move_component.gd" id="5_pp3af"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8gnqx"]
 size = Vector2(16, 16)
 
 [node name="Player" type="CharacterBody2D"]
-script = ExtResource("1_byuud")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_7kgso")
@@ -28,6 +27,11 @@ script = ExtResource("5_pp3af")
 actor = NodePath("..")
 ray = NodePath("../RayCast2D")
 
-[node name="MoveInputComponent" type="Node" parent="." node_paths=PackedStringArray("move_component")]
+[node name="MoveInputComponent" type="Node" parent="." node_paths=PackedStringArray("actor", "move_component")]
 script = ExtResource("4_6davh")
+actor = NodePath("..")
 move_component = NodePath("../MoveComponent")
+move_delay = 0.1
+
+[node name="PushComponent" type="Node" parent="."]
+script = ExtResource("5_ey5lw")

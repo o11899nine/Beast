@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://bhiufhjj1mtqv"]
+[gd_scene load_steps=7 format=3 uid="uid://bhiufhjj1mtqv"]
 
 [ext_resource type="Script" path="res://scripts/objects/block.gd" id="1_lsxcj"]
 [ext_resource type="Texture2D" uid="uid://f2k2pmaum2v3" path="res://assets/sprites/objects/hay.png" id="2_eu3ro"]
+[ext_resource type="Script" path="res://components/move_component.gd" id="3_1mrp1"]
+[ext_resource type="Script" path="res://components/pushable_component.gd" id="3_v2gc3"]
+[ext_resource type="Script" path="res://components/push_component.gd" id="5_xfxw0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fe1dd"]
 size = Vector2(14, 14)
@@ -20,3 +23,15 @@ centered = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(8, 8)
 shape = SubResource("RectangleShape2D_fe1dd")
+
+[node name="PushableComponent" type="Node" parent="." node_paths=PackedStringArray("move_component")]
+script = ExtResource("3_v2gc3")
+move_component = NodePath("../MoveComponent")
+
+[node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor", "ray")]
+script = ExtResource("3_1mrp1")
+actor = NodePath("..")
+ray = NodePath("../RayCast2D")
+
+[node name="PushComponent" type="Node" parent="."]
+script = ExtResource("5_xfxw0")

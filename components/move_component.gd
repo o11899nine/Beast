@@ -3,31 +3,42 @@ extends Node
 
 @export var actor: Node2D
 @export var ray: RayCast2D
-@export_range(1, INF, 1, "or_greater", "or_greater") var speed: int = 10
-@export var can_push: bool = false
-@export var can_be_pushed: bool = false
 
-var timer: Timer = Timer.new()
-var may_move: bool = false
 
-func _ready():
-	timer.wait_time = 10 / speed * 0.1
-	timer.timeout.connect(_on_timer_timeout)
-	actor.add_child.call_deferred(timer)
-	timer.autostart = true
-	may_move = true
+func move_and_push(velocity: Vector2) -> void:
+	if ray.is_colliding():
+		var obstacle = ray.get_collider()
+		push(obstacle, velocity)
+	actor.position += velocity * Globals.GRID_SIZE
+
+	
+func is_valid_move(velocity: Vector2) -> bool:
+	aim_raycast(velocity)
+	if not ray.is_colliding():
+		return true
+	elif can_push():
+		var obstacle = ray.get_collider()
+		if can_be_pushed(obstacle):
+			if obstacle.get_node("MoveComponent").is_valid_move(velocity):
+				return true
+	return false
 	
 
-func _on_timer_timeout() -> void:
-	may_move = true
+func can_push():
+	if actor.has_node("PushComponent"):
+		return true
+	return false
+	
+func can_be_pushed(obstacle: Node2D):
+	if obstacle.has_node("PushableComponent"):
+		return true
+	return false
+		
+			
+func push(obstacle: Node2D, velocity: Vector2) -> void:
+	obstacle.get_node("MoveComponent").move_and_push(velocity)
 
 
-func move(velocity: Vector2) -> void:
-	#if can_push:
-		#aim_raycast(direction)
-		#if ray.is_colliding():
-			#var node = ray.get_collider()
-			#push_actions.push(node, direction)
-	if may_move:
-		actor.position += velocity * Globals.GRID_SIZE
-
+func aim_raycast(velocity: Vector2) -> void:
+	ray.set_target_position(velocity * Globals.GRID_SIZE)
+	ray.force_raycast_update()

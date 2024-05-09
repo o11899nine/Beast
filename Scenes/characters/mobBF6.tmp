@@ -1,15 +1,15 @@
-[gd_scene load_steps=7 format=3 uid="uid://b03usvk74ny1g"]
+[gd_scene load_steps=6 format=3 uid="uid://b03usvk74ny1g"]
 
+[ext_resource type="Script" path="res://scripts/characters/mob.gd" id="1_boxj2"]
 [ext_resource type="Texture2D" uid="uid://ck7wgfcssehbv" path="res://assets/sprites/characters/sheep_esther.png" id="2_lbkoq"]
 [ext_resource type="Script" path="res://components/move_component.gd" id="4_6oyns"]
-[ext_resource type="Script" path="res://components/push_component.gd" id="4_enmx1"]
 [ext_resource type="Script" path="res://components/move_ai_component.gd" id="4_r37av"]
-[ext_resource type="Script" path="res://components/pushable_component.gd" id="5_3uih8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a4udm"]
 size = Vector2(16, 16)
 
 [node name="Mob" type="CharacterBody2D"]
+script = ExtResource("1_boxj2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_lbkoq")
@@ -23,19 +23,8 @@ shape = SubResource("RectangleShape2D_a4udm")
 position = Vector2(8, 8)
 target_position = Vector2(0, 16)
 
-[node name="MoveComponent" type="Node" parent="." node_paths=PackedStringArray("actor", "ray")]
+[node name="MoveComponent" type="Node" parent="."]
 script = ExtResource("4_6oyns")
-actor = NodePath("..")
-ray = NodePath("../RayCast2D")
 
-[node name="MoveAIComponent" type="Node" parent="." node_paths=PackedStringArray("actor", "move_component")]
+[node name="MoveAIComponent" type="Node" parent="."]
 script = ExtResource("4_r37av")
-actor = NodePath("..")
-move_component = NodePath("../MoveComponent")
-directions = "4D"
-
-[node name="PushComponent" type="Node" parent="."]
-script = ExtResource("4_enmx1")
-
-[node name="PushableComponent" type="Node" parent="."]
-script = ExtResource("5_3uih8")

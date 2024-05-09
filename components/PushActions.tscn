@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://d1ksggo1i4gjg"]
-
-[ext_resource type="Script" path="res://components/PushActions.gd" id="1_gg064"]
-
-[node name="PushActions" type="Node2D"]
-script = ExtResource("1_gg064")

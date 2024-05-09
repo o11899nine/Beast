@@ -16,7 +16,7 @@ func _ready():
 	
 	spawn_blocks(num_blocks)
 	spawn_player()
-	spawn_mobs(0)
+	spawn_mobs(5)
 	
 	
 	
