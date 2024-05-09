@@ -18,9 +18,7 @@ func is_valid_move(velocity: Vector2) -> bool:
 		return true
 	else:
 		var obstacle = ray.get_collider()
-		if can_be_crushed(obstacle) and can_crush():
-			return true
-		elif can_be_pushed(obstacle) and can_push():
+		if can_be_pushed(obstacle) and can_push():
 			if obstacle.get_node("MoveComponent").is_valid_move(velocity):
 				return true
 	return false
@@ -36,8 +34,8 @@ func can_be_pushed(obstacle: Node2D):
 		return true
 	return false
 
-func can_crush():
-	if actor.has_node("CrushComponent"):
+func can_crush(obstacle: Node2D):
+	if obstacle.has_node("CrushComponent"):
 		return true
 	return false
 	

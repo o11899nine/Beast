@@ -43,14 +43,14 @@ func get_random_valid_direction() -> Vector2:
 	# so don't call this if is_captured() returns TRUE
 	
 	# Shuffle all possible directions
-	var directions: Array = DIRECTIONS.values()
-	directions.shuffle()
+	var possible_directions: Array = DIRECTIONS.values()
+	possible_directions.shuffle()
 
 	# If the first direction is valid, return it. 
 	# Else, remove it and check the new first direction
-	for i in directions.size():
-		if move_component.is_valid_move(directions[0]):
-			return directions[0]
-		directions.pop_front()
+	for i in possible_directions.size():
+		if move_component.is_valid_move(possible_directions[0]):
+			return possible_directions[0]
+		possible_directions.pop_front()
 		
 	return Vector2.ZERO
